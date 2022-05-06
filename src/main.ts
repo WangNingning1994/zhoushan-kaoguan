@@ -64,21 +64,19 @@ async function getUserInfoByAccessToken(accessToken: string) {
     }
   });
   const { data } = res;
-  console.log(data);
   if (data.success) {
     if (data.body.name) {
       const obj = data.body;
+      // 设置用户信息
       Utils.setUserInfo(obj);
     }
     if (data.body.authlevel >= 2) {
       const path = Utils.getPath();
-      console.log('=== get path: ===');
-      console.log(path);
       if (path) {
         return { path }
       }
     } else {
-      // 提示用户完成实名认证
+      // TODO: 提示用户完成实名认证
     }
   }
 }
